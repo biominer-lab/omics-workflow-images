@@ -8,7 +8,7 @@
 | fastq-screen | 0.15.2  |
 | fastqc       | 0.11.9  |
 | fastp        | 0.23.2  |
-| cnvkit       | 0.9.9   |
-| ascat        | 2.5.2   |
-| cnv_facets   | 0.16.0  |
-| r-sequenza   | 3.0.0   |
+| delly        | 1.0.3   |
+| manta        | 1.6.0   |
+| gridss       | 2.13.2  |
+| svaba        | 1.1.0   |

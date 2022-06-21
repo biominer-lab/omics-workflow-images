@@ -11,7 +11,7 @@ RUN mamba env create -f environment.yml
 
 # Use conda-pack to create a standalone enviornment
 # in /venv:
-RUN conda-pack -n dnaseq-cnv-workflow -o /tmp/env.tar && \
+RUN conda-pack -n dnaseq-sv-workflow -o /tmp/env.tar && \
   mkdir /venv && cd /venv && tar xf /tmp/env.tar && \
   rm /tmp/env.tar
 
@@ -36,13 +36,13 @@ WORKDIR /data
 # ---------------------------------------------------
 # Customized based on your situations.
 MAINTAINER "Jingcheng Yang <yjcyxky@163.com>; Jun Shang <shangjunv@163.com>"
-LABEL Description="This image is used for DNA-Seq CNV."
+LABEL Description="This image is used for DNA-Seq SV."
 LABEL HOME="https://github.com/biominer-lab/omics-workflows"
 ENV FASTQC_VERSION 0.11.9
 ENV FASTP_VERSION 0.23.2
 ENV FASTQ_SCREEN_VERSION 0.15.2
 ENV QUALIMAP_VERSION 2.2.2d
-ENV CNVKIT_VERSION 0.9.9
-ENV ASCAT_VERSION 2.5.2
-ENV CNV_FACETS_VERSION 0.16.0
-ENV R_SEQUENZA_VERSION 3.0.0
+ENV DELLY_VERSION 1.0.3
+ENV MANTA_VERSION 1.6.0
+ENV GRIDSS_VERSION 2.13.2
+ENV SVABA_VERSION 1.1.0
