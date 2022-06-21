@@ -1,4 +1,4 @@
-name: dnaseq-workflow
+name: rnaseq-fusion-workflow
 channels:
   - r
   - free
@@ -7,10 +7,12 @@ channels:
   - conda-forge
   - bioconda
 dependencies:
-  - pindel==0.2.5b9
-  - strelka==2.9.10
+  - star==2.7.10a
+  - star-fusion==1.6.0
+  - arriba==2.3.0
+  - starseqr==0.6.7
   - qualimap==2.2.2d 
   - fastq-screen==0.15.2 
   - fastqc==0.11.9 
   - fastp==0.23.2 
-prefix: /Users/codespace/miniconda3/envs/dnaseq-workflow
+prefix: /Users/codespace/miniconda3/envs/rnaseq-fusion-workflow
