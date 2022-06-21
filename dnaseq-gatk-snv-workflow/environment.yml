@@ -1,4 +1,4 @@
-name: dnaseq-snv-workflow
+name: dnaseq-gatk-snv-workflow
 channels:
   - r
   - free
@@ -7,10 +7,12 @@ channels:
   - conda-forge
   - bioconda
 dependencies:
-  - pindel==0.2.5b9
-  - strelka==2.9.10
   - qualimap==2.2.2d 
   - fastq-screen==0.15.2 
   - fastqc==0.11.9 
   - fastp==0.23.2 
-prefix: /Users/codespace/miniconda3/envs/dnaseq-snv-workflow
+  - bwa==0.7.17
+  - gatk==4.0.5.1
+  - hap.py==0.3.14
+  - picard==2.18.7
+prefix: /Users/codespace/miniconda3/envs/dnaseq-gatk-snv-workflow

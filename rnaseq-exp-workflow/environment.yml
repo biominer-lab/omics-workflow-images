@@ -1,4 +1,4 @@
-name: rnaseq-workflow
+name: rnaseq-exp-workflow
 channels:
   - r
   - free
@@ -16,4 +16,4 @@ dependencies:
   - fastqc==0.11.9 
   - fastp==0.23.2 
   - stringtie==2.2.1
-prefix: /Users/codespace/miniconda3/envs/rnaseq-workflow
+prefix: /Users/codespace/miniconda3/envs/rnaseq-exp-workflow
