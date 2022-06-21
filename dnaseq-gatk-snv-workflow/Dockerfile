@@ -8,6 +8,7 @@ RUN conda install -c conda-forge conda-pack mamba
 COPY environment.yml .
 COPY condarc ~/.condarc
 RUN mamba env create -f environment.yml
+RUN pip install pysam==0.6
 
 # Use conda-pack to create a standalone enviornment
 # in /venv:
