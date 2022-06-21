@@ -1,0 +1,45 @@
+name: Build & Publish workflows
+
+on:
+  push:
+    branches:    
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Build & Publish Docker Image
+    strategy:
+      matrix:
+        subdir: ["dnaseq-cnv-workflow", "dnaseq-gatk-snv-workflow", "dnaseq-snv-workflow", "dnaseq-sv-workflow", "qc-workflow", "rnaseq-exp-workflow", "rnaseq-fusion-workflow"]
+    steps:
+    - name: Checkout
+      uses: actions/checkout@master
+
+    - name: Configure environment
+      id: config
+      run: |
+        VERSION=`cat version`
+        echo ::set-output name=version::$VERSION
+        TAG_VERSION=`${{ matrix.subdir }}:$VERSION`
+        echo ::set-output name=tag_version::$TAG_VERSION
+      working-directory: ${{ matrix.subdir }}
+
+    - name: Check docker image
+      id: check_docker_image
+      run: |
+        TAG_VERSION=$(docker login --username=${{ secrets.DOCKER_USERNAME }} registry.cn-shanghai.aliyuncs.com -p ${{ secrets.DOCKER_PASSWORD }} > /dev/null && docker inspect registry.cn-shanghai.aliyuncs.com/biominer-docker-repos/${{ matrix.subdir }}:${{ steps.config.outputs.version }} --format "{{(index .RepoTags 0)}}")
+        echo ::set-output name=tag_version::$TAG_VERSION
+      working-directory: ${{ matrix.subdir }}
+
+    - name: Publish docker
+      id: docker-master
+      if: ${{ steps.check_docker_image.outputs.tag_version != steps.config.outputs.tag_version }}
+      uses: yjcyxky/docker-action@master
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+        registry: registry.cn-shanghai.aliyuncs.com
+        repository: biominer-docker-repos/${{ matrix.subdir }}
+        tag: ${{ steps.config.outputs.version }}
+        subdir: ${{ matrix.subdir }}
