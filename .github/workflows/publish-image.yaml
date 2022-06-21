@@ -28,7 +28,7 @@ jobs:
     - name: Check docker image
       id: check_docker_image
       run: |
-        TAG_VERSION=$(docker login --username=${{ secrets.DOCKER_USERNAME }} registry.cn-shanghai.aliyuncs.com -p ${{ secrets.DOCKER_PASSWORD }} > /dev/null && docker inspect registry.cn-shanghai.aliyuncs.com/biominer-docker-repos/${{ matrix.subdir }}:${{ steps.config.outputs.version }} --format "{{(index .RepoTags 0)}}")
+        TAG_VERSION=$(docker login --username=${{ secrets.DOCKER_USERNAME }} registry.cn-shanghai.aliyuncs.com -p ${{ secrets.DOCKER_PASSWORD }} > /dev/null && docker inspect registry.cn-shanghai.aliyuncs.com/biominer-docker-repos/${{ matrix.subdir }}:${{ steps.config.outputs.version }} --format "{{(index .RepoTags 0)}}" || echo 'true')
         echo ::set-output name=tag_version::$TAG_VERSION
       working-directory: ${{ matrix.subdir }}
 
