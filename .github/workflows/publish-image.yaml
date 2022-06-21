@@ -28,13 +28,13 @@ jobs:
     - name: Check docker image
       id: check_docker_image
       run: |
-        TAG_VERSION=$(docker login --username=${{ secrets.DOCKER_USERNAME }} registry.cn-shanghai.aliyuncs.com -p ${{ secrets.DOCKER_PASSWORD }} > /dev/null && docker inspect registry.cn-shanghai.aliyuncs.com/biominer-docker-repos/${{ matrix.subdir }}:${{ steps.config.outputs.version }} --format "{{(index .RepoTags 0)}}" || echo 'true')
+        TAG_VERSION=$(docker login --username=${{ secrets.DOCKER_USERNAME }} registry.cn-shanghai.aliyuncs.com -p ${{ secrets.DOCKER_PASSWORD }} > /dev/null && docker pull registry.cn-shanghai.aliyuncs.com/biominer-docker-repos/${{ matrix.subdir }}:${{ steps.config.outputs.version }} --format "{{(index .RepoTags 0)}}" || echo 'not-exist')
         echo ::set-output name=tag_version::$TAG_VERSION
       working-directory: ${{ matrix.subdir }}
 
     - name: Publish docker
       id: docker-master
-      if: ${{ steps.check_docker_image.outputs.tag_version != steps.config.outputs.tag_version }}
+      if: ${{ steps.check_docker_image.outputs.tag_version == 'not-exist' }}
       uses: yjcyxky/docker-action@master
       with:
         username: ${{ secrets.DOCKER_USERNAME }}
