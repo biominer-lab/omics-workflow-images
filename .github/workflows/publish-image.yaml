@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Build & Publish Docker Image
     strategy:
+      fail-fast: false
       matrix:
         subdir: ["dnaseq-cnv-workflow", "dnaseq-gatk-snv-workflow", "dnaseq-snv-workflow", "dnaseq-sv-workflow", "qc-workflow", "rnaseq-exp-workflow", "rnaseq-fusion-workflow"]
     steps:
