@@ -21,7 +21,7 @@ jobs:
       run: |
         VERSION=`cat version`
         echo ::set-output name=version::$VERSION
-        TAG_VERSION=`${{ matrix.subdir }}:$VERSION`
+        TAG_VERSION=${{ matrix.subdir }}:$VERSION
         echo ::set-output name=tag_version::$TAG_VERSION
       working-directory: ${{ matrix.subdir }}
 
