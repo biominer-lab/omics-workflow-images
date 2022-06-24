@@ -14,5 +14,5 @@ dependencies:
   - cnvkit==0.9.9
   - ascat==2.5.2
   - cnv_facets==0.16.0
-  - r-sequenza==3.0.0
+  - sequenza-utils==3.0.0
 prefix: /Users/codespace/miniconda3/envs/dnaseq-cnv-workflow
