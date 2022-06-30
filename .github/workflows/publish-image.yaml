@@ -12,7 +12,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        subdir: ["ecdna-workflow", "dnaseq-cnv-workflow", "dnaseq-gatk-snv-workflow", "dnaseq-snv-workflow", "dnaseq-sv-workflow", "qc-workflow", "rnaseq-exp-workflow", "rnaseq-fusion-workflow"]
+        subdir: ["ecdna-aa-workflow", "ecdna-cm-workflow", "ecdna-um-workflow", "dnaseq-snv-workflow", "dnaseq-sv-workflow", "qc-workflow", "rnaseq-exp-workflow", "rnaseq-fusion-workflow"]
     steps:
     - name: Checkout
       uses: actions/checkout@master
