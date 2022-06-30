@@ -11,12 +11,11 @@ RUN mamba env create -f environment.yml
 
 # Prepare envs for amplicon-architect
 COPY --from=jluebeck/ampliconarchitect:latest /home/programs /home/programs
-RUN conda init bash
-RUN . ~/.bashrc && conda activate amplicon-architect && cd /home/programs/mosek/8/tools/platform/linux64x86/python/3/ && python3 setup.py install
+RUN cd /home/programs/mosek/8/tools/platform/linux64x86/python/3/ && python3 setup.py install
 
 # Use conda-pack to create a standalone enviornment
 # in /venv:
-RUN conda-pack -n ecdna-workflow -o /tmp/env.tar && \
+RUN conda-pack -n ecdna-aa-workflow -o /tmp/env.tar && \
   mkdir /venv && cd /venv && tar xf /tmp/env.tar && \
   rm /tmp/env.tar
 
