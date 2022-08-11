@@ -37,7 +37,7 @@ WORKDIR /data
 # Customized based on your situations.
 MAINTAINER "Jingcheng Yang <yjcyxky@163.com>; Jun Shang <shangjunv@163.com>"
 LABEL Description="This image is used for QC."
-LABEL HOME="https://github.com/biominer-lab/omics-workflows"
+LABEL HOME="https://github.com/biominer-lab/omics-workflow-images"
 ENV FASTQC_VERSION 0.11.9
 ENV FASTP_VERSION 0.23.2
 ENV FASTQ_SCREEN_VERSION 0.15.2

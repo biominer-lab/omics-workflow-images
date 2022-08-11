@@ -37,7 +37,7 @@ WORKDIR /data
 # Customized based on your situations.
 MAINTAINER "Jingcheng Yang <yjcyxky@163.com>; Jun Shang <shangjunv@163.com>"
 LABEL Description="This image is used for RNA-Seq Fusion."
-LABEL HOME="https://github.com/biominer-lab/omics-workflows"
+LABEL HOME="https://github.com/biominer-lab/omics-workflow-images"
 ENV STAR_VERSION 2.7.10a
 ENV STAR_FUSION_VERSION 1.6.0
 ENV ARRIBA 2.3.0

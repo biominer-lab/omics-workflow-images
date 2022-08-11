@@ -33,19 +33,33 @@ RUN apt-get update && \
     wget \
     zlib1g-dev 
 
-# get pyvcf for mergevcf and annotate_from_readcounts.py
-RUN pip install --upgrade pip && \
-    pip install pyvcf
-
 # build remaining dependencies:
+# HTSlib: 
+RUN mkdir -p /deps && \
+    cd /deps && \
+    wget https://github.com/samtools/htslib/releases/download/1.15.1/htslib-1.15.1.tar.bz2 && \
+    tar -xjvf htslib-1.15.1.tar.bz2 && \
+    rm -rf htslib-1.15.1.tar.bz2 && \
+    cd htslib-1.15.1 && \
+    autoreconf -i && \
+    ./configure --disable-bz2 --disable-lzma --disable-libgsl && \
+    make && \
+    make install
+
 # bcftools: sort
 RUN cd /tmp && \
     wget https://github.com/samtools/bcftools/archive/refs/tags/1.15.1.tar.gz && \
     tar -xzvf 1.15.1.tar.gz && \
     rm -rf 1.15.1.tar.gz && \
     cd bcftools-1.15.1 && \
+    autoheader && autoconf && \
+    ./configure --with-htslib=/deps/htslib-1.15.1 --enable-perl-filters && \
     make && \
     make install
+
+# get pyvcf for mergevcf and annotate_from_readcounts.py
+RUN pip install --upgrade pip && \
+    pip install pyvcf
 
 # mergevcf: merge snv and indel vcf
 RUN cd /tmp && \

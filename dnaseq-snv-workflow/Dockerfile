@@ -41,7 +41,7 @@ WORKDIR /data
 # Customized based on your situations.
 MAINTAINER "Jingcheng Yang <yjcyxky@163.com>; Jun Shang <shangjunv@163.com>"
 LABEL Description="This image is used for DNA-Seq SNV."
-LABEL HOME="https://github.com/biominer-lab/omics-workflows"
+LABEL HOME="https://github.com/biominer-lab/omics-workflow-images"
 ENV STRELKA_VERSION 2.9.10
 ENV PINDEL_VERSION 0.2.5b9
 ENV SENTIEON_VERSION 202112.04
