@@ -58,8 +58,8 @@ RUN cd /tmp && \
     make install
 
 # get pyvcf for mergevcf and annotate_from_readcounts.py
-RUN pip install --upgrade pip && \
-    pip install pyvcf
+RUN pip install --upgrade pip -i https://pypi.python.org/simple && \
+    pip install pyvcf -i https://pypi.python.org/simple
 
 # mergevcf: merge snv and indel vcf
 RUN cd /tmp && \
@@ -88,6 +88,7 @@ RUN cd /tmp && \
     tar -xzvf v0.1.16.tar.gz && \
     rm -rf v0.1.16.tar.gz && \
     cd vcftools-0.1.16 && \
+    ./autogen.sh && \
     ./configure && \
     make && \
     make install
