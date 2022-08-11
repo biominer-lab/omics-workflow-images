@@ -15,6 +15,7 @@ WORKDIR /data
 RUN apt-get update && \
     apt-get install -y \
     automake \
+    perl \
     autotools-dev \
     build-essential \
     cmake \
@@ -32,10 +33,23 @@ RUN apt-get update && \
     wget \
     zlib1g-dev 
 
+# get pyvcf for mergevcf and annotate_from_readcounts.py
+RUN pip install --upgrade pip && \
+    pip install pyvcf
+
 # build remaining dependencies:
+# bcftools: sort
+RUN cd /tmp && \
+    wget https://github.com/samtools/bcftools/archive/refs/tags/1.15.1.tar.gz && \
+    tar -xzvf 1.15.1.tar.gz && \
+    rm -rf 1.15.1.tar.gz && \
+    cd bcftools-1.15.1 && \
+    make && \
+    make install
+
 # mergevcf: merge snv and indel vcf
 RUN cd /tmp && \
-    wget -nv https://github.com/ljdursi/mergevcf/archive/0.2.tar.gz && \
+    wget https://github.com/ljdursi/mergevcf/archive/0.2.tar.gz && \
     tar -xzf 0.2.tar.gz && \
     rm 0.2.tar.gz && \
     cd mergevcf-0.2 && \
@@ -43,38 +57,26 @@ RUN cd /tmp && \
     cd .. && \
     rm -rf mergevcf-0.2
 
-# vcftools: Filtering out snv and indel
-RUN cd /tmp && \
-    wget https://github.com/vcftools/vcftools/archive/refs/tags/v0.1.16.tar.gz && \
-    tar -xzvf v0.1.16.tar.gz && \
-    rm -rf v0.1.16.tar.gz && \
-    cd vcftools-0.1.16 && \
-    mkdir build && \
-    cd build && \
-    cmake .. && \
-    make
-
-# bcftools: sort
-RUN cd /tmp && \
-    wget https://github.com/samtools/bcftools/archive/refs/tags/1.15.1.tar.gz && \
-    tar -xzvf 1.15.1.tar.gz && \
-    rm -rf 1.15.1.tar.gz && \
-    cd bcftools-1.15.1 && \
-    mkdir build && \
-    cd build && \
-    cmake .. && \
-    make
-
 # vt: manipulating and generating VCF files
 RUN cd /tmp && \
-    wget -nv https://github.com/atks/vt/archive/0.5772.tar.gz && \
+    wget https://github.com/atks/vt/archive/0.5772.tar.gz && \
     tar -xzf 0.5772.tar.gz && \
     rm 0.5772.tar.gz && \
     cd vt-0.5772 && \
-    make \
+    make &&\
     mv vt /usr/local/bin && \
-    cd .. \
+    cd .. &&\
     rm -rf vt-0.5772
+
+# vcftools: Filtering out snv and indel
+RUN cd /tmp && \
+    wget -nv https://github.com/vcftools/vcftools/archive/refs/tags/v0.1.16.tar.gz && \
+    tar -xzvf v0.1.16.tar.gz && \
+    rm -rf v0.1.16.tar.gz && \
+    cd vcftools-0.1.16 && \
+    ./configure && \
+    make && \
+    make install
 
 # bamtools: 
 RUN mkdir -p /deps && \
@@ -131,10 +133,6 @@ RUN mkdir -p /src && \
     ./configure --with-bamtools=/deps/bamtools-2.4.0 --with-jemalloc=/usr --prefix=/usr/local && \
     make && \
     make install
-
-# get pyvcf for annotate_from_readcounts.py
-RUN pip install --upgrade pip && \
-    pip install pyvcf
 
 # Put auxilliary data in /usr/local/share
 COPY indel.header /usr/local/share
