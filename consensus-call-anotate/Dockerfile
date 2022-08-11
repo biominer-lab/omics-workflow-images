@@ -53,7 +53,7 @@ RUN cd /tmp && \
     rm -rf 1.15.1.tar.gz && \
     cd bcftools-1.15.1 && \
     autoheader && autoconf && \
-    ./configure --with-htslib=/deps/htslib-1.15.1 --enable-perl-filters && \
+    ./configure --with-htslib=/deps/htslib-1.15.1 && \
     make && \
     make install
 
