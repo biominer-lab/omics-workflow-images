@@ -1,0 +1,23 @@
+{
+  "variant_type":"SNV",
+
+  "input_vcf": {
+    "class": "File",
+    "path": "../data/pass.vcf.gz"
+  },
+
+  "normal_bam": {
+    "class": "File",
+    "path": "../data/normal_minibam.bam"
+  },
+
+  "tumour_bam": {
+    "class": "File",
+    "path": "../data/tumor_minibam.bam"
+  },
+
+  "output": {
+    "class": "File",
+    "path": "../snv.vcf"
+  }
+}
