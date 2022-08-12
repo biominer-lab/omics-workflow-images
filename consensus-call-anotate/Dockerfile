@@ -139,7 +139,7 @@ RUN mkdir -p /deps && \
 # set a fixed version for reproducibility
 RUN mkdir -p /deps && \
     cd /deps && \
-    git clone --recursive git://github.com/ekg/vcflib.git && \
+    git clone --recursive https://github.com/vcflib/vcflib.git && \
     cd vcflib && \
     mkdir -p build && \
     cd build && \
