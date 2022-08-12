@@ -1,7 +1,7 @@
 # Consensus annotate snv and indel based on method of PCAWG
 # Code from github of SGA Annotate variants
 #
-# Version 0.1
+# Version 0.1.3
 #
 
 FROM ubuntu:14.04
@@ -141,8 +141,11 @@ RUN mkdir -p /deps && \
     cd /deps && \
     git clone --recursive git://github.com/ekg/vcflib.git && \
     cd vcflib && \
-    git checkout d453d91592fe8a74d92b49cd6c7cd73f79a8b70b && \
-    make 
+    mkdir -p build && \
+    cd build && \
+    cmake -DCMAKE_BUILD_TYPE=Debug -DZIG=OFF -DOPENMP=OFF .. && \
+    cmake --build . && \
+    cmake --install .
 
 # build SGA
 RUN mkdir -p /src && \
