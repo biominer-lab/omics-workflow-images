@@ -26,6 +26,8 @@ RUN apt-get update && \
     libncurses5-dev \
     libsparsehash-dev \
     libz-dev \
+    libbz2-dev \
+    liblzma-dev \
     python \
     python-dev \
     python-pip \
@@ -125,7 +127,11 @@ RUN mkdir -p /deps && \
     tar -xjvf samtools-1.15.tar.bz2 && \
     rm samtools-1.15.tar.bz2 && \
     cd samtools-1.15 && \
-    make prefix=/usr/local/ install && \
+    autoheader && \
+    autoconf -Wno-syntax && \
+    ./configure --with-htslib=/deps/htslib-1.15.1 && \
+    make && \
+    make install && \
     cd .. && \
     rm -rf samtools-1.15
 
