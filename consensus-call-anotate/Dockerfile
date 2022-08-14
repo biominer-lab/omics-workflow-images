@@ -1,12 +1,12 @@
 # Consensus annotate snv and indel based on method of PCAWG
 # Code from github of SGA Annotate variants
 #
-# Version 0.1.5
+# Version 0.1.6
 #
 
 FROM ubuntu:14.04
 MAINTAINER Jun Shang <shangjunv@163.com> 
-LABEL Description="Runs bam-based annotation on candidate SNV, indel calls" Vendor="OICR" Version="0.1.5"
+LABEL Description="Runs bam-based annotation on candidate SNV, indel calls" Vendor="OICR" Version="0.1.6"
 
 VOLUME /data
 WORKDIR /data
@@ -130,4 +130,5 @@ COPY snv_annotate.sh /usr/local/bin
 COPY annotate.sh /usr/local/bin
 COPY annotate_from_readcounts.py /usr/local/bin
 
-ENTRYPOINT ["/usr/local/bin/annotate.sh"]
+RUN chmod a+x /usr/local/bin/annotate.sh
+RUN chmod a+x /usr/local/bin/annotate_from_readcounts.py
