@@ -1,6 +1,6 @@
 # Consensus annotate snv and indel based on method of PCAWG
 #
-# Version 0.1.9
+# Version 0.2.0
 #
 
 # The build-stage image:
