@@ -30,19 +30,19 @@ zcat $INPUT_VCF \
 # index BAM files if necessary
 if [ ! -f ${NORMAL_BAM}.bai ] 
 then
-    samtools index ${NORMAL_BAM}
+    /venv/bin/samtools index ${NORMAL_BAM}
 fi
 
 if [ ! -f ${TUMOUR_BAM}.bai ] 
 then
-    samtools index ${TUMOUR_BAM}
+    /venv/bin/samtools index ${TUMOUR_BAM}
 fi
 
 # intermediate file, containing the output calls
 # but not containing all needed new header lines
 readonly BEFORE_REHEADERING_VCF=/tmp/before_headers_${VCFBASE}.vcf
 
-sga somatic-variant-filters \
+/venv/bin/sga somatic-variant-filters \
     --annotate-only \
     --threads=$NTHREADS \
     --tumor-bam=$TUMOUR_BAM \

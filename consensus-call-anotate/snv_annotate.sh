@@ -45,11 +45,11 @@ fi
 readonly NORMAL_READCOUNTS=/tmp/${VCFBASE}.normal.rc
 readonly TUMOUR_READCOUNTS=/tmp/${VCFBASE}.tumour.rc
 
-bam-readcount --reference-fasta ${REFERENCE} \
+/venv/bin/bam-readcount --reference-fasta ${REFERENCE} \
     --site-list $REGIONS \
     --max-count 8000 $NORMAL_BAM > ${NORMAL_READCOUNTS} 2> /dev/null
 
-bam-readcount --reference-fasta ${REFERENCE} \
+/venv/bin/bam-readcount --reference-fasta ${REFERENCE} \
     --site-list $REGIONS \
     --max-count 8000 $TUMOUR_BAM > ${TUMOUR_READCOUNTS} 2> /dev/null
 
