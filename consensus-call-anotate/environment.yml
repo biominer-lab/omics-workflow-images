@@ -1,0 +1,22 @@
+name: consensus-call-anotate
+channels:
+  - r
+  - free
+  - main
+  - defaults
+  - conda-forge
+  - bioconda
+  - BioBuilds
+dependencies:
+  - python==2.7*
+  - pyvcf==0.6.8
+  - htslib==1.3.*
+  - samtools==1.6
+  - vcflib==1.0.0_rc1_16.05.18
+  - mergevcf==1.0.1
+  - vt==2015.11.10
+  - zlib==1.2.8*
+  - vcftools==0.1.15
+  - bamtools==2.4.0
+  - sga==0.10.15
+prefix: /Users/codespace/miniconda3/envs/consensus-call-anotate
