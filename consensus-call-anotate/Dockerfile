@@ -1,6 +1,6 @@
 # Consensus annotate snv and indel based on method of PCAWG
 #
-# Version 0.1.8
+# Version 0.1.9
 #
 
 # The build-stage image:
@@ -50,6 +50,7 @@ ENV ZLIB_VERSION 1.2.8*
 ENV VCFLIB_VERSION 1.0.0_rc1_16.05.18
 ENV MERGEVCF_VERSION 1.0.1
 ENV VT_VERSION 2015.11.10
+ENV BAM-READCOUNT_VERSION 0.8
 ENV VCFTOOLS_VERSION 0.1.15
 ENV BAMTOOLS_VERSION 2.4.1
 ENV SGA_VERSION 0.10.15
