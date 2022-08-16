@@ -1,6 +1,5 @@
 #!/bin/bash 
 readonly DEFNTHREADS=1
-readonly READCOUNTSBIN=/usr/bin/bam-readcounts
 
 if [ $# -eq 0 ] || [ -z "$1" ] || [ -z "$2" ] || [ -z "$3" ] \
     || [ ! -f "$1" ] || [ ! -f "$2" ] || [ ! -f "$3" ]
@@ -23,7 +22,7 @@ readonly BASE=$( basename ${INPUT_VCF} )
 readonly VCFBASE=${BASE%.*}
 readonly CLEAN_VCF=/tmp/clean_${VCFBASE}.vcf
 zcat $INPUT_VCF \
-    | /deps/vcflib/bin/vcfbreakmulti \
+    | vcfbreakmulti \
     | grep -v "^##.*=$" \
     > ${CLEAN_VCF}
 
@@ -34,23 +33,23 @@ awk '$1 !~ /^#/{ printf "%s\t%d\t%d\n",$1,$2,$2+1 }' $CLEAN_VCF > $REGIONS
 # index BAM files if necessary
 if [ ! -f ${NORMAL_BAM}.bai ] 
 then
-    /usr/local/bin/samtools index ${NORMAL_BAM}
+    samtools index ${NORMAL_BAM}
 fi
 
 if [ ! -f ${TUMOUR_BAM}.bai ] 
 then
-    /usr/local/bin/samtools index ${TUMOUR_BAM}
+    samtools index ${TUMOUR_BAM}
 fi
 
 # generate readcounts from input vcf
 readonly NORMAL_READCOUNTS=/tmp/${VCFBASE}.normal.rc
 readonly TUMOUR_READCOUNTS=/tmp/${VCFBASE}.tumour.rc
 
-/usr/bin/bam-readcount --reference-fasta ${REFERENCE} \
+bam-readcount --reference-fasta ${REFERENCE} \
     --site-list $REGIONS \
     --max-count 8000 $NORMAL_BAM > ${NORMAL_READCOUNTS} 2> /dev/null
 
-/usr/bin/bam-readcount --reference-fasta ${REFERENCE} \
+bam-readcount --reference-fasta ${REFERENCE} \
     --site-list $REGIONS \
     --max-count 8000 $TUMOUR_BAM > ${TUMOUR_READCOUNTS} 2> /dev/null
 
@@ -58,7 +57,7 @@ readonly TUMOUR_READCOUNTS=/tmp/${VCFBASE}.tumour.rc
 # but not containing all needed new header lines
 readonly BEFORE_REHEADERING_VCF=/tmp/before_headers_${VCFBASE}.vcf
 
-/usr/local/bin/annotate_from_readcounts.py \
+annotate_from_readcounts.py \
     ${CLEAN_VCF} \
     ${NORMAL_READCOUNTS} ${TUMOUR_READCOUNTS} \
     > ${BEFORE_REHEADERING_VCF}

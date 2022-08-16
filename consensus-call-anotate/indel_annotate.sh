@@ -1,6 +1,5 @@
 #!/bin/bash 
 readonly DEFNTHREADS=1
-readonly SGABIN=/usr/local/bin/sga
 
 if [ $# -eq 0 ] || [ -z "$1" ] || [ -z "$2" ] || [ -z "$3" ] \
     || [ ! -f "$1" ] || [ ! -f "$2" ] || [ ! -f "$3" ]
@@ -31,19 +30,19 @@ zcat $INPUT_VCF \
 # index BAM files if necessary
 if [ ! -f ${NORMAL_BAM}.bai ] 
 then
-    /usr/local/bin/samtools index ${NORMAL_BAM}
+    samtools index ${NORMAL_BAM}
 fi
 
 if [ ! -f ${TUMOUR_BAM}.bai ] 
 then
-    /usr/local/bin/samtools index ${TUMOUR_BAM}
+    samtools index ${TUMOUR_BAM}
 fi
 
 # intermediate file, containing the output calls
 # but not containing all needed new header lines
 readonly BEFORE_REHEADERING_VCF=/tmp/before_headers_${VCFBASE}.vcf
 
-${SGABIN} somatic-variant-filters \
+sga somatic-variant-filters \
     --annotate-only \
     --threads=$NTHREADS \
     --tumor-bam=$TUMOUR_BAM \
