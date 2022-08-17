@@ -108,7 +108,7 @@ class BamReadcountFile(object):
         """
         VarDepth = self.evidence_reads(chrom, pos, alt)
         nreads = self.reads(chrom, pos, alt)
-        if int(nreads) == 0:
+        if nreads == 0:
             vaf = 0.00000
         else:
             vaf = format(int(VarDepth)/int(nreads), '.5f')

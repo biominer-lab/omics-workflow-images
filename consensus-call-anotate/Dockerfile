@@ -1,6 +1,6 @@
 # Consensus annotate snv and indel based on method of PCAWG
 #
-# Version 0.2.1
+# Version 0.2.2
 #
 
 # The build-stage image:
@@ -52,12 +52,12 @@ ENV MERGEVCF_VERSION 1.0.1
 ENV VT_VERSION 2015.11.10
 ENV BAM_READCOUNT_VERSION 0.8
 ENV VCFTOOLS_VERSION 0.1.15
-ENV BAMTOOLS_VERSION 2.4.1
+ENV BAMTOOLS_VERSION 2.4.0
 ENV SGA_VERSION 0.10.15
 
 # Put auxilliary data in /usr/local/share
-COPY indel.header /usr/share
-COPY snv.header /usr/share
+COPY indel.header /usr/local/share/snv.header
+COPY snv.header /usr/local/share/snv.header
 
 # Put scripts in /usr/local/bin
 COPY indel_annotate.sh /usr/bin
