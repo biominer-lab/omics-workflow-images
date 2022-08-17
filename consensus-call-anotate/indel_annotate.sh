@@ -53,7 +53,7 @@ readonly BEFORE_REHEADERING_VCF=/tmp/before_headers_${VCFBASE}.vcf
 # output up to the start of the INFO lines
 sed -n -e '1,/^#CHROM/p' ${BEFORE_REHEADERING_VCF} | head -n -1
 # output new header lines
-cat /usr/share/indel.header
+cat /usr/local/share/indel.header
 # output calls
 sed -n -e '/^#CHROM/,$p' ${BEFORE_REHEADERING_VCF}
 
