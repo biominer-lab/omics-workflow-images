@@ -18,6 +18,6 @@ dependencies:
   - vt==2015.11.10
   - zlib==1.2.8*
   - vcftools==0.1.15
-  - bamtools==2.4.0
+  - bamtools==2.4.1
   - sga==0.10.15
 prefix: /Users/codespace/miniconda3/envs/consensus-call-anotate
