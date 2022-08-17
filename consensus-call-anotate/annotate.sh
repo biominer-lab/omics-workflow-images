@@ -13,8 +13,8 @@ fi
 if [ ${1:0:3} == "SNV" ] || [ ${1:0:3} == "snv" ]
 then
     >&2 echo "#SNV Annotation"
-    /usr/local/bin/snv_annotate.sh $2 $3 $4 $5 $6
+    /usr/bin/snv_annotate.sh $2 $3 $4 $5 $6
 else
     >&2 echo "#indel Annotation"
-    /usr/local/bin/indel_annotate.sh $2 $3 $4 $5 $6
+    /usr/bin/indel_annotate.sh $2 $3 $4 $5 $6
 fi

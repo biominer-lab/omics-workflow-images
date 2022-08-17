@@ -23,7 +23,7 @@ readonly BASE=$( basename ${INPUT_VCF} )
 readonly VCFBASE=${BASE%.*}
 readonly CLEAN_VCF=/tmp/clean_${VCFBASE}.vcf
 zcat $INPUT_VCF \
-    | /deps/vcflib/bin/vcfbreakmulti \
+    | /venv/bin/vcfbreakmulti \
     | grep -v "^##.*=$" \
     > ${CLEAN_VCF}
 
@@ -53,7 +53,7 @@ readonly BEFORE_REHEADERING_VCF=/tmp/before_headers_${VCFBASE}.vcf
 # output up to the start of the INFO lines
 sed -n -e '1,/^#CHROM/p' ${BEFORE_REHEADERING_VCF} | head -n -1
 # output new header lines
-cat /usr/local/share/indel.header
+cat /usr/share/indel.header
 # output calls
 sed -n -e '/^#CHROM/,$p' ${BEFORE_REHEADERING_VCF}
 

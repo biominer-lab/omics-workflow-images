@@ -1,6 +1,6 @@
 # Consensus annotate snv and indel based on method of PCAWG
 #
-# Version 0.2.0
+# Version 0.2.1
 #
 
 # The build-stage image:
@@ -41,29 +41,29 @@ WORKDIR /data
 # ---------------------------------------------------
 # Customized based on your situations.
 MAINTAINER "Jun Shang <shangjunv@163.com>"
-LABEL Description="This image is used for merge snv and indel"
+LABEL Description="This image is used for merging snv and indel"
 ENV PYTHON_VERSION 2.7*
-ENV PYVCF 0.6.8
+ENV PYVCF_VERSION 0.6.8
 ENV HTSLIB_VERSION 1.3.*
 ENV SAMTOOLS_VERSION 1.6
 ENV ZLIB_VERSION 1.2.8*
 ENV VCFLIB_VERSION 1.0.0_rc1_16.05.18
 ENV MERGEVCF_VERSION 1.0.1
 ENV VT_VERSION 2015.11.10
-ENV BAM-READCOUNT_VERSION 0.8
+ENV BAM_READCOUNT_VERSION 0.8
 ENV VCFTOOLS_VERSION 0.1.15
 ENV BAMTOOLS_VERSION 2.4.1
 ENV SGA_VERSION 0.10.15
 
 # Put auxilliary data in /usr/local/share
-COPY indel.header /usr/local/share
-COPY snv.header /usr/local/share
+COPY indel.header /usr/share
+COPY snv.header /usr/share
 
 # Put scripts in /usr/local/bin
-COPY indel_annotate.sh /usr/local/bin
-COPY snv_annotate.sh /usr/local/bin
-COPY annotate.sh /usr/local/bin
-COPY annotate_from_readcounts.py /usr/local/bin
+COPY indel_annotate.sh /usr/bin
+COPY snv_annotate.sh /usr/bin
+COPY annotate.sh /usr/bin
+COPY annotate_from_readcounts.py /usr/bin
 
-RUN chmod a+x /usr/local/bin/annotate.sh
-RUN chmod a+x /usr/local/bin/annotate_from_readcounts.py
+RUN chmod a+x /usr/bin/annotate.sh
+RUN chmod a+x /usr/bin/annotate_from_readcounts.py
