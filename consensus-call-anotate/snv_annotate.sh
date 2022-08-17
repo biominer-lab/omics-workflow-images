@@ -22,7 +22,7 @@ readonly BASE=$( basename ${INPUT_VCF} )
 readonly VCFBASE=${BASE%.*}
 readonly CLEAN_VCF=/tmp/clean_${VCFBASE}.vcf
 zcat $INPUT_VCF \
-    | vcfbreakmulti \
+    | /venv/bin/vcfbreakmulti \
     | grep -v "^##.*=$" \
     > ${CLEAN_VCF}
 
@@ -33,12 +33,12 @@ awk '$1 !~ /^#/{ printf "%s\t%d\t%d\n",$1,$2,$2+1 }' $CLEAN_VCF > $REGIONS
 # index BAM files if necessary
 if [ ! -f ${NORMAL_BAM}.bai ] 
 then
-    samtools index ${NORMAL_BAM}
+    /venv/bin/samtools index ${NORMAL_BAM}
 fi
 
 if [ ! -f ${TUMOUR_BAM}.bai ] 
 then
-    samtools index ${TUMOUR_BAM}
+    /venv/bin/samtools index ${TUMOUR_BAM}
 fi
 
 # generate readcounts from input vcf
