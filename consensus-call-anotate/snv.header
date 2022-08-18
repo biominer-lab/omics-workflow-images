@@ -1,9 +1,9 @@
-##INFO=<ID=NormalTotalDepth,Number=1,Type=Integer,Description="SGA-derived total depth in control">
-##INFO=<ID=NormalVarDepth,Number=1,Type=Integer,Description="SGA-derived variant depth in control">
-##INFO=<ID=NormalVAF,Number=1,Type=Float,Description="SGA-derived variant allele frequency in control">
-##INFO=<ID=TumorTotalDepth,Number=1,Type=Integer,Description="SGA-derived total depth in tumour">
-##INFO=<ID=TumorVarDepth,Number=1,Type=Integer,Description="SGA-derived variant depth in tumour">
-##INFO=<ID=TumorVAF,Number=1,Type=Float,Description="SGA-derived variant allele frequency in tumour">
+##INFO=<ID=NormalTotalDepth,Number=1,Type=Integer,Description="Total depth in control">
+##INFO=<ID=NormalVarDepth,Number=1,Type=Integer,Description="Variant depth in control">
+##INFO=<ID=NormalVAF,Number=1,Type=Float,Description="Variant allele frequency in control">
+##INFO=<ID=TumorTotalDepth,Number=1,Type=Integer,Description="Total depth in tumour">
+##INFO=<ID=TumorVarDepth,Number=1,Type=Integer,Description="Variant depth in tumour">
+##INFO=<ID=TumorVAF,Number=1,Type=Float,Description="Variant allele frequency in tumour">
 ##INFO=<ID=TumourAvgVarBaseQ,Number=1,Type=Float,Description="Average base quality of variant allele in tumour sample, if present">
 ##INFO=<ID=TumourAvgVarMapQ,Number=1,Type=Float,Description="Average map quality of reaeds showing variant allele in tumour sample, if present">
 ##INFO=<ID=TumourAvgVarPosn,Number=1,Type=Float,Description="Average fractional position of variant allele in tumour reads, if present">
