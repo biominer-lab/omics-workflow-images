@@ -108,10 +108,10 @@ class BamReadcountFile(object):
         """
         VarDepth = self.evidence_reads(chrom, pos, alt)
         nreads = self.reads(chrom, pos, alt)
-        if int(nreads) != 0:
-            vaf = format(int(VarDepth)/int(nreads), '.5f')
-        else:
+        if int(nreads) == 0:
             vaf = 0.00000
+        else:
+            vaf = format(int(VarDepth)*1.0/int(nreads)*1.0, '.5f')
         return vaf
 
     def map_qual(self, chrom, pos, alt):
