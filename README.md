@@ -6,6 +6,7 @@
 | fastq-screen      | 0.15.2    | QC             |        |
 | fastqc            | 0.11.5    | QC             |        |
 | fastp             | 0.23.2    | QC             |        |
+| ngscheckmate      | 1.0.0     | QC             |        |
 | sentieon-genomics | 202112.04 | PGX-DNA-SNV    |        |
 | strelka           | 2.9.10    | PGX-DNA-SNV    |        |
 | pindel            | 0.2.5b9   | PGx-DNA-Indel  |        |
@@ -33,4 +34,3 @@
 | svaba             | 1.1.0     | DNA-SV         |        |
 | hla-polysolver    | 1.0.0     | HLA-Typing DNA |        |
 | minimap2          | 2.24      | ecDNA          |        |
-
