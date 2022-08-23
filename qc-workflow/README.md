@@ -10,5 +10,5 @@
 | fastp        | 0.23.2  |
 | ngscheckmate | 1.0.0   |
 | bcftools     | 1.15.1  |
-| samtools     | 1.14    |
+| samtools     | 1.15.1  |
 | htslib       | 1.15.1  |
