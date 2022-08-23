@@ -12,7 +12,7 @@
 | pindel            | 0.2.5b9   | PGx-DNA-Indel  |        |
 | fastp             | 0.23.2    | RNA-EXP        |        |
 | hisat2            | 2.2.1     | RNA-EXP        |        |
-| samtools          | 1.13.1    | RNA-EXP        |        |
+| samtools          | 1.14      | RNA-EXP        |        |
 | stringtie         | 1.3.4     | RNA-EXP        |        |
 | ballgown          |           | RNA-EXP        |        |
 | star              | 2.7.10a   | RNA-Fusion     |        |
