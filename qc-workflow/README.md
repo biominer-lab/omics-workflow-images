@@ -9,6 +9,7 @@
 | fastqc       | 0.11.9  |
 | fastp        | 0.23.2  |
 | ngscheckmate | 1.0.0   |
-| bcftools     | 1.15.1  |
-| samtools     | 1.15.1  |
-| htslib       | 1.15.1  |
+| bcftools     | 1.14    |
+| samtools     | 1.14    |
+| htslib       | 1.14    |
+| variantbam   | 1.4.4a  |
