@@ -13,3 +13,4 @@
 | samtools     | 1.14    |
 | htslib       | 1.14    |
 | variantbam   | 1.4.4a  |
+| openssl      | 1.1.1q  |

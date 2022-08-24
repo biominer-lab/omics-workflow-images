@@ -16,4 +16,5 @@ dependencies:
   - samtools==1.14
   - htslib==1.14
   - variantbam==1.4.4a
+  - openssl==1.1.1q
 prefix: /Users/codespace/miniconda3/envs/qc-workflow
