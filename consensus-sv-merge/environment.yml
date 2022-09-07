@@ -1,0 +1,19 @@
+name: consensus-sv-merge
+channels:
+  - r
+  - free
+  - main
+  - defaults
+  - conda-forge
+  - bioconda
+  - BioBuilds
+dependencies:
+  - python==2.7*
+  - bedtools==2.29.2
+  - pyvcf==0.6.8
+  - pandas==0.24.2
+  - numpy==1.16.5
+  - pybedtools==0.7.10
+  - matplotlib==2.2.3
+  - networkx==2.1
+prefix: /Users/codespace/miniconda3/envs/consensus-sv-merge
