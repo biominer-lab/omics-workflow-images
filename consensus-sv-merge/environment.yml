@@ -9,7 +9,7 @@ channels:
   - BioBuilds
 dependencies:
   - python==2.7*
-  - bedtools==2.29.2
+  - bedtools==2.26.2
   - pyvcf==0.6.8
   - pandas==0.24.2
   - numpy==1.16.5
