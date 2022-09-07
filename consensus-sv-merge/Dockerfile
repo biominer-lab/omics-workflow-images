@@ -1,6 +1,6 @@
 # sv merging mainly based on method of PCAWG
 #
-# Version 0.1
+# Version 0.1.3
 #
 
 # The build-stage image:
@@ -50,6 +50,7 @@ ENV NUMPY_VERSION 1.16.5
 ENV PYBEDTOOLS_VERSION 0.7.10
 ENV MATPLOTLIB_VERSION 2.2.3
 ENV NETWORKX_VERSION 2.1
+ENV SAMTOOLS_VERSION 1.14
 
 # Put scripts in /usr/local/bin
 COPY dellyVcf2Bedpe.py /usr/bin
