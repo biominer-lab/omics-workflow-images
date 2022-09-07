@@ -16,4 +16,5 @@ dependencies:
   - pybedtools==0.7.10
   - matplotlib==2.2.3
   - networkx==2.1
+  - samtools==1.14
 prefix: /Users/codespace/miniconda3/envs/consensus-sv-merge
