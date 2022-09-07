@@ -12,7 +12,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        subdir: ["dnaseq-cnv-workflow", "dnaseq-gatk-snv-workflow", "dnaseq-snv-workflow", "dnaseq-sv-workflow", "qc-workflow", "rnaseq-exp-workflow", "rnaseq-fusion-workflow", "consensus-call-anotate"]
+        subdir: ["dnaseq-cnv-workflow", "dnaseq-gatk-snv-workflow", "dnaseq-snv-workflow", "dnaseq-sv-workflow", "qc-workflow", "rnaseq-exp-workflow", "rnaseq-fusion-workflow", "consensus-call-anotate", "consensus-sv-merge"]
     steps:
     - name: Checkout
       uses: actions/checkout@master
