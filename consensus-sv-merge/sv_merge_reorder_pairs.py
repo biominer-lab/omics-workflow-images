@@ -2,7 +2,7 @@
 ## created: 150204
 ## by: Joachim Weischenfeldt
 
-#python sv_merging/pcawg_merge_reorder_pairs.py  <file> <pid>
+#python sv_merge_reorder_pairs.py  <file> <pid>
 
 
 from __future__ import division
