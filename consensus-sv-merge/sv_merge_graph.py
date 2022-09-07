@@ -142,7 +142,7 @@ for H in networkx.connected_component_subgraphs(G):
     typeSet=set()
     sample=set()
     center=list()
-    for n, d in H.nodes_iter(data=True):
+    for n, d in H.nodes(data=True):
         typeSet.add(d['SVtype'][0])
         sample.add(d['SVtype'][1])
         center.append(d['SVtype'][2])
@@ -171,7 +171,7 @@ for H in networkx.connected_component_subgraphs(G):
         nx.draw_networkx_edges(H,pos,edgelist=esmall,
                             width=2+4*weight,alpha=0.5,edge_color='b',style='dashed')
         plotGraph(H, baseName)
-    for n in H.nodes_iter(data=False):
+    for n in H.nodes(data=False):
          compAssign[n]=conCompCount
          compMembers[conCompCount].append(n)
 
