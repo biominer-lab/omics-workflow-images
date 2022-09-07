@@ -2,7 +2,7 @@
 ## created: 150202
 ## by: Joachim Weischenfeldt
 
-# python /home/weischej/Dropbox/job_scripts/pawg_scripts/PAWG/smufinVcf2Bedpe.py <vcf>
+# python smufinVcf2Bedpe.py <vcf>
 
 import os,sys,re,vcf, gzip, csv
 

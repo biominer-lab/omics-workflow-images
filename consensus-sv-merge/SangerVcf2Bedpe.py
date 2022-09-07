@@ -2,7 +2,7 @@
 ## created: 150202
 ## by: Joachim Weischenfeldt
 
-# python /g/korbel//weischen/Dropbox/git/variant-calling/SangerVcf2Bedpe.py <vcf>
+# python SangerVcf2Bedpe.py <vcf>
 
 import os,sys,re,vcf, gzip, csv
 

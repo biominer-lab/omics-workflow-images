@@ -3,7 +3,7 @@
 ## by: Joachim Weischenfeldt
 
 
-# python /g/korbel//weischen/Dropbox/git/variant-calling/dRangerVcf2Bedpe.py <vcf>
+# python dRangerVcf2Bedpe.py <vcf>
 from __future__ import print_function
 import os,sys,re,vcf, gzip, csv
 from collections import defaultdict
