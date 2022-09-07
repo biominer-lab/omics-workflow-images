@@ -2,7 +2,7 @@
 ## created: 151102
 ## by: Joachim Weischenfeldt
 
-# python /g/korbel/weischen/Dropbox/git/variant-calling/snowmanVcf2Bedpe.py <vcf>
+# python snowmanVcf2Bedpe.py <vcf>
 from __future__ import print_function
 import os,sys,re,vcf, gzip, csv
 from collections import defaultdict
