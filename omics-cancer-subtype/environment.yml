@@ -1,0 +1,15 @@
+name: omics-cancer-subtype
+channels:
+  - r
+  - free
+  - main
+  - defaults
+  - conda-forge
+  - bioconda
+dependencies:
+  - r-snftool==2.3.1 
+  - r-data.table==1.14
+  - r-dplyr==1.0.10
+  - r-optparse==1.7.3
+
+prefix: /Users/codespace/miniconda3/envs/omics-cancer-subtype

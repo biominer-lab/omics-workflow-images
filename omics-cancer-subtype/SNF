@@ -1,0 +1,152 @@
+#!/usr/bin/env Rscript
+
+library(optparse)
+option_list <- list(
+  make_option(c("-r", "--mrnafile"),
+    type = "character", default = NULL, ## this argument is meant to be required
+    help = "mRNA expression file path", metavar = "character"
+  ),
+  make_option(c("-i", "--mirnafile"),
+    type = "character", default = NULL,
+    help = "miRNA expression file path", metavar = "character"
+  ),
+  make_option(c("-e", "--methylationfile"),
+    type = "character", default = NULL,
+    help = "methylation file path", metavar = "character"
+  ),
+  make_option(c("-p", "--proteinfile"),
+    type = "character", default = NULL,
+    help = "protein file path", metavar = "character"
+  ),
+  make_option(c("-b", "--metabolismfile"),
+    type = "character", default = NULL,
+    help = "metabolism file path", metavar = "character"
+  ),
+  make_option(c("-s", "--splicingfile"),
+    type = "character", default = NULL,
+    help = "alternative splicing file path", metavar = "character"
+  ),
+  make_option(c("-v", "--snvfile"),
+    type = "character", default = NULL,
+    help = "gene mutation file path", metavar = "character"
+  ),
+  make_option(c("n", "--cnvfile"),
+    type = "character", default = NULL,
+    help = "copy number mutation file path", metavar = "character"
+  ),
+  make_option(c("-k", "--number_neighbors"),
+    type = "numeric", default = 20,
+    help = "number of neighbors, usually (10~30) [default= %default]", metavar = "character"
+  ),
+  make_option(c("-a", "--alpha"),
+    type = "numeric", default = 0.5,
+    help = "hyperparameter, usually (0.3~0.8) [default= %default]", metavar = "character"
+  ),
+  make_option(c("-t", "--number_iterations"),
+    type = "numeric", default = 10,
+    help = "Number of Iterations, usually (10~20) [default= %default]", metavar = "character"
+  ),
+  make_option(c("-o", "--outputdir"),
+    type = "character", default = NULL,
+    help = "location of output directory", metavar = "character"
+  )
+)
+
+
+opt_parser <- OptionParser(option_list = option_list)
+opt <- parse_args(opt_parser)
+
+# strip trailing / from all parameters in opt
+for (i in 1:length(opt)) {
+  if (substr(opt[i], nchar(opt[i]), nchar(opt[i])) == "/") {
+    opt[i] <- substr(opt[i], 1, nchar(opt[i]) - 1)
+  }
+}
+
+print(opt)
+
+##########################
+# Command line arguments #
+##########################
+
+mrnafile <- opt$mrnafile
+mirnafile <- opt$mirnafile ### NOTE: outputDir is the workDir
+methylationfile <- opt$methylationfile
+proteinfile <- opt$proteinfile
+metabolismfile <- opt$metabolismfile
+splicingfile <- opt$splicingfile
+snvfile <- opt$snvfile
+cnvfile <- opt$cnvfile
+K <- opt$number_neighbors
+alpha <- opt$alpha
+T <- opt$number_iterations
+outputdir <- opt$outputdir
+
+
+#############
+# libraries #
+#############
+require(SNFtool, quietly = TRUE)
+require(data.table, quietly = TRUE)
+require(dplyr, quietly = TRUE)
+
+### function ------
+snf_main <- function(path_list) {
+
+  ## read files
+  w_list <- lapply(path_list, function(x) {
+    if (!is.null(x)) {
+      df_file <- read.table(x, row.names = 1) %>% t()
+      sample_id <- row.names(df_file)
+
+      if (is.numeric(as.matrix(df_file))) {
+        ## If the data is continuous, we recommend to use the function "dist2" as follows
+        Dist <- (dist2(as.matrix(df_file), as.matrix(df_file)))^(1 / 2)
+      } else if (is.character(as.matrix(df_file))) {
+        Dist <- chiDist2(as.matrix(df_file))
+      }
+
+      ## next, construct similarity graphs
+      W <- affinityMatrix(Dist, K, alpha)
+    }
+    return(W)
+  })
+
+  df_list <- lapply(path_list, function(x) {
+    if (!is.null(x)) {
+      df_file <- read.table(x, row.names = 1) %>% t()
+    }
+    return(df_file)
+  })
+
+  ## next, we fuse all the graphs
+  ## then the overall matrix can be computed by similarity network fusion(SNF):
+  W <- SNF(w_list, K, T)
+  saveRDS(W, file = paste(outputdir, "/snf_matrix.rds", sep = ""))
+
+  ## get best subtype
+  gap_cut_list <- estimateNumberOfClustersGivenGraph(W, NUMC = 2:10)
+  group <- gap_cut_list$`Eigen-gap best`
+  labels <- paste("S", spectralClustering(W, group), sep = "")
+
+  ## output subtype
+  sample_names <- row.names(df_list[[1]])
+  dt_labels <- cbind(sample_names, labels) %>% data.table()
+  colnames(dt_labels) <- c("sample_id", "subtype")
+  fwrite(dt_labels, file = paste(outputdir, "/subtype.txt", sep = ""))
+
+  lapply(c(2:10), function(i) {
+    pdf(file = paste(outputdir, "/heatmap_cluter_", i, ".pdf", sep = ""), 3, 3.5)
+    pt <- displayClustersWithHeatmap(W, spectralClustering(W, i))
+    print(pt)
+    dev.off()
+  })
+
+  ### feature score ------
+  NMI_scores <- rankFeaturesByNMI(df_list, W)
+  saveRDS(NMI_scores, file = paste(outputdir, "/rankfeatures.rds", sep = ""))
+}
+
+### run ------
+path_list <- c(mrnafile, mirnafile, methylationfile, proteinfile, metabolismfile, splicingfile, snvfile, cnvfile)
+snf_main(path_list)
