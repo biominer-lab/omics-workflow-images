@@ -39,7 +39,7 @@ MAINTAINER "Jingcheng Yang <yjcyxky@163.com>; Jun Shang <shangjunv@163.com>"
 LABEL Description="This image is used for DNA-Seq CNV."
 LABEL HOME="https://github.com/biominer-lab/omics-workflow-images"
 ENV CNVKIT_VERSION 0.9.9
-ENV R_BASE_VERSION 4.2.3
+ENV R_BASE_VERSION 4.2.2
 ENV ASCAT_VERSION 3.0.0
 ENV CANCERIT_ALLELECOUNT 4.3.0
 ENV HTSLIB 1.17

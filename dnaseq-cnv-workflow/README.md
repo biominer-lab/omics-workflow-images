@@ -5,7 +5,7 @@
 | Name           | Version |
 | -------------- | ------- |
 | cnvkit         | 0.9.9   |
-| r-base         | 4.2.3   |
+| r-base         | 4.2.2   |
 | ascat          | 3.0.0   |
 | allelecount    | 4.3.0   |
 | cnv_facets     | 0.16.0  |
