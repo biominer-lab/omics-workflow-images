@@ -38,11 +38,6 @@ WORKDIR /data
 MAINTAINER "Jingcheng Yang <yjcyxky@163.com>; Jun Shang <shangjunv@163.com>"
 LABEL Description="This image is used for DNA-Seq CNV."
 LABEL HOME="https://github.com/biominer-lab/omics-workflow-images"
-ENV FASTQC_VERSION 0.11.9
-ENV FASTP_VERSION 0.23.2
-ENV FASTQ_SCREEN_VERSION 0.15.2
-ENV QUALIMAP_VERSION 2.2.2d
-ENV SAMTOOLS_VERSION 1.15.1
 ENV CNVKIT_VERSION 0.9.9
 ENV ASCAT_VERSION 3.0.0
 ENV CANCERIT_ALLELECOUNT 4.3.0
