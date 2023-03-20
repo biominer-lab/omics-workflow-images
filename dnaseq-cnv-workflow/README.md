@@ -8,7 +8,6 @@
 | fastq-screen   | 0.15.2  |
 | fastqc         | 0.11.9  |
 | fastp          | 0.23.2  |
-| samtools       | 1.15.1  |
 | cnvkit         | 0.9.9   |
 | ascat          | 3.0.0   |
 | allelecount    | 4.3.0   |
